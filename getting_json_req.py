@@ -4,16 +4,18 @@ from bs4 import BeautifulSoup
 from dataclasses import dataclass
 from dotenv import load_dotenv
 import os
+
 load_dotenv()
 
 google_api = os.getenv("GOOGLE_API")
 
+
 @dataclass
 class Item:
-    Index: int
     Title: str
     Link: str
     Trailer: str
+
 
 class MakingRequest:
     url = "https://google.serper.dev/search"
@@ -21,12 +23,13 @@ class MakingRequest:
         'X-API-KEY': f'{google_api}',
         'Content-Type': 'application/json'
     }
-    def __init__(self,param):
+
+    def __init__(self, param):
         self.param = param
 
     @property
     def payload(self):
-        return json.dumps({"q": f"{self.param}",})
+        return json.dumps({"q": f"{self.param}", })
 
     def making_response(self):
         return requests.request("POST", self.url, headers=self.headers, data=self.payload)
@@ -34,12 +37,14 @@ class MakingRequest:
     def making_json_data(self):
         return json.loads((self.making_response()).text)
 
+
 class MakingJson:
     def start(self, value):
         self.param = value
         self.data = self.returning_json_req()
 
         return (json.dumps(self.making_body(), indent=4))
+
     def returning_json_req(self):
         return MakingRequest(self.param).making_json_data()
 
@@ -50,9 +55,9 @@ class MakingJson:
         description = knowledge_graph.get('description', 'N/A')
         attributes = knowledge_graph.get('attributes', 'N/A')
         knowledge_graph = {
-            'title' : title,
-            'description' : description,
-            'attributes' : attributes,
+            'title': title,
+            'description': description,
+            'attributes': attributes,
         }
         return knowledge_graph
 
@@ -62,7 +67,7 @@ class MakingJson:
         ret_result = list()
         if organic_results:
             for i, result in enumerate(organic_results):
-                ret_result.append(Item(i + 1, result['title'], result['link'], result['snippet']))
+                ret_result.append(Item(result['title'], result['link'], result['snippet']))
         else:
             print("No organic results found.")
 
