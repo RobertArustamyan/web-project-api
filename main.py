@@ -7,7 +7,6 @@ import os
 load_dotenv()
 
 google_api = os.getenv("GOOGLE_API")
-openai_api = os.getenv("OPENAI_API")
 
 @dataclass
 class Item:
@@ -36,9 +35,8 @@ class MakingRequest:
         return json.loads((self.making_response()).text)
 
 class MakingJson:
-    def start(self):
-        print("Print something you want to search!")
-        self.param = input()
+    def start(self, value):
+        self.param = value
         self.data = self.returning_json_req()
 
         print(json.dumps(self.making_body(), indent=4))
@@ -83,4 +81,5 @@ class MakingJson:
 
 if __name__ == "__main__":
     json_obj = MakingJson()
-    json_obj.start()
+    val = input()
+    json_obj.start(value=val)
