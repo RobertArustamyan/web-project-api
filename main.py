@@ -81,4 +81,5 @@ class MakingJson:
 
 if __name__ == "__main__":
     json_obj = MakingJson()
-    json_obj.start(value="Tank t-90")
+    val = input()
+    json_obj.start(value=val)
