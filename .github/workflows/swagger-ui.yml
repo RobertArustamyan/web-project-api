@@ -1,0 +1,21 @@
+name: Swagger UI
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Generate Swagger UI
+      uses: Legion2/swagger-ui-action@v1.2.0
+      with:
+        output: swagger-ui
+        spec-url: https://raw.githubusercontent.com/RobertArustamyan/web-project-api/master/openapi%20(1).yaml
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
