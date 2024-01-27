@@ -3,7 +3,7 @@ name: Swagger UI
 on:
   push:
     branches:
-      - main
+      - master
 
 jobs:
   build:
