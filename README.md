@@ -8,7 +8,7 @@ Explore the API documentation using Swagger UI:
 
 API documentation - [Swagger UI](https://app.swaggerhub.com/apis-docs/ROBERTARUSTAMYAN2/search-api/1.0.0)
 
-* Oly contain one `GET` method that return `.json` result.
+* Only contains one `GET` method that return `.json` result.
 
 ## Getting Started
 
