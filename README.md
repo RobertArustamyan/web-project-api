@@ -1,4 +1,4 @@
-# Web Project API
+# Google Search Data API
 
 This repository contains the source code for the Web Project that requires search results from Google. The API provides search functionality with a query parameter, delivering detailed search results with a knowledge graph and organic results.
 
